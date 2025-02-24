@@ -6,13 +6,13 @@
 
 import Foundation
 
-class HueReminderDescriptionBody: Codable {
-    var type = appUniqueIdentifier
-    var author: String?
-    var hue: Int?
-    var sat: Int?
+public class HueReminderDescriptionBody: Codable {
+    public var type = appUniqueIdentifier
+    public var author: String?
+    public var hue: Int?
+    public var sat: Int?
 
-    init(author: String?, hue: Float?, sat: Float?) {
+    public init(author: String?, hue: Float?, sat: Float?) {
         self.author = author?.cap(first: 10)
 
         if let hue = hue, let sat = sat {
@@ -30,7 +30,7 @@ class HueReminderDescriptionBody: Codable {
         case s
     }
 
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(String.self, forKey: .t)
         self.author = try container.decodeIfPresent(String.self, forKey: .a)
@@ -38,7 +38,7 @@ class HueReminderDescriptionBody: Codable {
         self.sat = try container.decodeIfPresent(Int.self, forKey: .s)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .t)
         try container.encodeIfPresent(author, forKey: .a)
