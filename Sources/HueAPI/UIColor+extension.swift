@@ -7,6 +7,15 @@
 import UIKit
 
 extension UIColor {
+    func getHueValues() -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+        var hue: CGFloat = 0
+        var sat: CGFloat = 0
+        var bri: CGFloat = 0
+        var alpha: CGFloat = 0
+        self.getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        return (hue, sat, bri, alpha)
+    }
+
     /// Create a UIColor from a kelvin value.
     /// - Parameter temperature: The temperature in kelvin
     convenience init(temperature: CGFloat) {
