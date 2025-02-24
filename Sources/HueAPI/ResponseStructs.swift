@@ -11,19 +11,19 @@ typealias JSONValues = [String: HueLightResponse?]
 typealias JSONGroups = [String: HueGroupResponse?]
 
 @available(iOS 13.0, *)
-struct HueLightInfo: Comparable, Identifiable, Hashable {
-    static func < (lhs: HueLightInfo, rhs: HueLightInfo) -> Bool {
+public struct HueLightInfo: Comparable, Identifiable, Hashable {
+    public static func < (lhs: HueLightInfo, rhs: HueLightInfo) -> Bool {
         lhs.name < rhs.name
     }
 
-    var id: String
-    var name: String
-    var type: String?
-    var on: Bool
-    var color: Color
-    var brightness: Int
+    public var id: String
+    public var name: String
+    public var type: String?
+    public var on: Bool
+    public var color: Color
+    public var brightness: Int
 
-    init(id: String, name: String, on: Bool, color: Color, brightness: Int) {
+    public init(id: String, name: String, on: Bool, color: Color, brightness: Int) {
         self.id = id
         self.name = name
         self.on = on
@@ -31,7 +31,7 @@ struct HueLightInfo: Comparable, Identifiable, Hashable {
         self.brightness = brightness
     }
 
-    init?(key: String, value: HueLightResponse?) {
+    public init?(key: String, value: HueLightResponse?) {
         guard let value = value, let state = value.state else {
             return nil
         }
@@ -60,20 +60,20 @@ struct HueLightInfo: Comparable, Identifiable, Hashable {
 }
 
 /// Data struct for the response from the Hue API for /groups call.
-struct HueGroups: Comparable, Identifiable, Hashable {
-    var id: String
-    var lights: [String]
-    var name: String
-    var type: String
-    var modelid: String
-    var uniqueid: String
-    var `class`: String
+public struct HueGroups: Comparable, Identifiable, Hashable {
+    public var id: String
+    public var lights: [String]
+    public var name: String
+    public var type: String
+    public var modelid: String
+    public var uniqueid: String
+    public var `class`: String
 
-    static func < (lhs: HueGroups, rhs: HueGroups) -> Bool {
+    public static func < (lhs: HueGroups, rhs: HueGroups) -> Bool {
         lhs.name < rhs.name
     }
 
-    init?(key: String, value: HueGroupResponse?) {
+    public init?(key: String, value: HueGroupResponse?) {
         guard let value = value else {
             return nil
         }
@@ -93,7 +93,7 @@ struct HueGroups: Comparable, Identifiable, Hashable {
     ///   - lights: The selected light ids
     ///   - name: The name of the groupd
     ///   - type: The type of the group
-    init(key: String, lights: [String], name: String, type: String) {
+    public init(key: String, lights: [String], name: String, type: String) {
         id = key
         self.lights = lights
         self.name = name
@@ -104,71 +104,71 @@ struct HueGroups: Comparable, Identifiable, Hashable {
     }
 }
 
-struct HueGroupResponse: Decodable {
-    var name: String?
-    var lights: [String]?
-    var type: String?
-    var `class`: String?
-    var modelid: String?
-    var uniqueid: String?
+public struct HueGroupResponse: Decodable {
+    public var name: String?
+    public var lights: [String]?
+    public var type: String?
+    public var `class`: String?
+    public var modelid: String?
+    public var uniqueid: String?
 }
 
-struct HueLightResponse: Decodable {
-    var state: HueLightState?
-    var type: String?
-    var name: String?
-    var modelid: String?
-    var manufacturername: String?
-    var productname: String?
-    var uniqueid: String?
-    var swversion: String?
+public struct HueLightResponse: Decodable {
+    public var state: HueLightState?
+    public var type: String?
+    public var name: String?
+    public var modelid: String?
+    public var manufacturername: String?
+    public var productname: String?
+    public var uniqueid: String?
+    public var swversion: String?
 }
 
-struct HueLightState: Decodable {
-    var on: Bool?
-    var bri: Int?
-    var hue: Int?
-    var sat: Int?
-    var effect: String?
-    var xy: [Double]?
-    var ct: Int?
-    var alert: String?
-    var colormode: String?
-    var mode: String?
-    var reachable: Bool?
+public struct HueLightState: Decodable {
+    public var on: Bool?
+    public var bri: Int?
+    public var hue: Int?
+    public var sat: Int?
+    public var effect: String?
+    public var xy: [Double]?
+    public var ct: Int?
+    public var alert: String?
+    public var colormode: String?
+    public var mode: String?
+    public var reachable: Bool?
 }
 
-struct HueSchedulesResponse: Decodable {
-    var success: HueScheduleSuccess?
-    var error: HueScheduleError?
+public struct HueSchedulesResponse: Decodable {
+    public var success: HueScheduleSuccess?
+    public var error: HueScheduleError?
 }
 
-struct HueSchedulesDeteleResponse: Decodable {
-    var success: String?
-    var error: HueScheduleError?
+public struct HueSchedulesDeteleResponse: Decodable {
+    public var success: String?
+    public var error: HueScheduleError?
 }
 
-struct HueScheduleSuccess: Decodable {
-    var id: String
+public struct HueScheduleSuccess: Decodable {
+    public var id: String
 }
 
-struct HueScheduleError: Decodable {
-    var type: Int
-    var address: String
-    var description: String
+public struct HueScheduleError: Decodable {
+    public var type: Int
+    public var address: String
+    public var description: String
 }
 
 typealias ScheduleValues = [String: HueSchedule?]
 
-struct HueSchedule: Decodable {
-    var name: String?
-    var description: String?
-    var command: HueCommand?
-    var localtime: String?
-    var created: String?
-    var status: String?
-    var autodelete: Bool?
-    var recycle: Bool?
+public struct HueSchedule: Decodable {
+    public var name: String?
+    public var description: String?
+    public var command: HueCommand?
+    public var localtime: String?
+    public var created: String?
+    public var status: String?
+    public var autodelete: Bool?
+    public var recycle: Bool?
 
     public func isScheduleFromThisApplication() -> Bool {
         guard let descriptionBody = description else {
@@ -178,7 +178,7 @@ struct HueSchedule: Decodable {
         let decoder = JSONDecoder()
         if let description = try? decoder.decode(HueReminderDescriptionBody.self,
                                                  from: descriptionBody.data(using: .utf8)!) {
-            return description.type == HueAPI.appUniqueIdentifier
+            return description.type == appUniqueIdentifier
         }
         return false
     }
@@ -217,29 +217,29 @@ struct HueSchedule: Decodable {
     }
 }
 
-struct HueCommand: Decodable {
-    var address: String?
-    var body: HueCommandBody?
-    var method: String?
+public struct HueCommand: Decodable {
+    public var address: String?
+    public var body: HueCommandBody?
+    public var method: String?
 }
 
-struct HueCommandBody: Decodable {
+public struct HueCommandBody: Decodable {
     // The command can be of two kinds. One for color and the other for alert.
     // The two styles have different fields.
 
     // The color style.
     // These will be nil when command is alert style.
-    var bri: Int?
-    var on: Bool?
-    var sat: Int?
-    var hue: Int?
+    public var bri: Int?
+    public var on: Bool?
+    public var sat: Int?
+    public var hue: Int?
 
     // The alert style.
     // This field is empty when color style.
-    var alert: String?
+    public var alert: String?
 }
 
-struct HueConfig: Decodable {
-    var name: String
+public struct HueConfig: Decodable {
+    public var name: String
     // Lots of more fields available
 }
