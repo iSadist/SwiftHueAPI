@@ -38,7 +38,7 @@ public class MDNSBrowser: NSObject, MDNSBrowsing {
     /// The delegate for the browser
     public var delegate: MDNSBrowserDelegate?
 
-    override init() {
+    override public init() {
         browser = NetServiceBrowser()
         super.init()
         browser.delegate = self
