@@ -7,8 +7,8 @@
 import Foundation
 import SwiftUI
 
-typealias JSONValues = [String: HueLightResponse?]
-typealias JSONGroups = [String: HueGroupResponse?]
+public typealias JSONValues = [String: HueLightResponse?]
+public typealias JSONGroups = [String: HueGroupResponse?]
 
 @available(iOS 13.0, *)
 public struct HueLightInfo: Comparable, Identifiable, Hashable {
@@ -158,7 +158,7 @@ public struct HueScheduleError: Decodable {
     public var description: String
 }
 
-typealias ScheduleValues = [String: HueSchedule?]
+public typealias ScheduleValues = [String: HueSchedule?]
 
 public struct HueSchedule: Decodable {
     public var name: String?
