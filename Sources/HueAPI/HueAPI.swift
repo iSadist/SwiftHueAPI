@@ -11,7 +11,7 @@ let appUniqueIdentifier = "LF1.0"
 public class HueAPI {
     static let appUniqueIdentifier = "LF1.0"
 
-    static let dateFormatter: DateFormatter = {
+    public static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         return formatter
