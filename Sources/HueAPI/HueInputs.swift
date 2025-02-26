@@ -42,7 +42,7 @@ public class LightColor {
     public var brightness: Float
     public var alpha: Float
 
-    init(hue: Float, saturation: Float, brightness: Float, alpha: Float) {
+    public init(hue: Float, saturation: Float, brightness: Float, alpha: Float) {
         self.hue = hue
         self.saturation = saturation
         self.brightness = brightness
@@ -51,16 +51,16 @@ public class LightColor {
 
     /// Returns the respective UIColor
     /// - Returns: UIColor
-    func toUIColor() -> UIColor {
+    public func toUIColor() -> UIColor {
         UIColor(hue: CGFloat(hue),
                        saturation: CGFloat(saturation),
                        brightness: CGFloat(brightness),
                        alpha: CGFloat(alpha))
     }
-    
+
     /// Converts the values to the HueAPI interpretation
     /// - Returns: Hue, Saturation and Brightness
-    func toHueValues() -> (CGFloat, CGFloat, CGFloat) {
+    public func toHueValues() -> (CGFloat, CGFloat, CGFloat) {
         var tempHue = CGFloat(hue)
         var tempSat = CGFloat(saturation)
         var tempBri = CGFloat(brightness)
@@ -85,7 +85,7 @@ public class ReminderItem {
     public var alertStyle: String?
     public var color: LightColor?
 
-    init(name: String? = nil, light: Light, active: Bool, alert: AlertStyle, author: String? = nil, time: Date? = nil, bridge: Bridge? = nil, alertStyle: String? = nil, color: LightColor? = nil) {
+    public init(name: String? = nil, light: Light, active: Bool, alert: AlertStyle, author: String? = nil, time: Date? = nil, bridge: Bridge? = nil, alertStyle: String? = nil, color: LightColor? = nil) {
         self.name = name
         self.light = light
         self.active = active
