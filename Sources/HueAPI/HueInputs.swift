@@ -76,7 +76,7 @@ public class LightColor {
 
 public class ReminderItem {
     public var name: String?
-    public var light: Light
+    public var light: Set<Light>
     public var active: Bool
     public var alert: AlertStyle
     public var author: String?
@@ -85,7 +85,15 @@ public class ReminderItem {
     public var alertStyle: String?
     public var color: LightColor?
 
-    public init(name: String? = nil, light: Light, active: Bool, alert: AlertStyle, author: String? = nil, time: Date? = nil, bridge: Bridge? = nil, alertStyle: String? = nil, color: LightColor? = nil) {
+    public init(name: String? = nil,
+                light: Set<Light>,
+                active: Bool,
+                alert: AlertStyle,
+                author: String? = nil,
+                time: Date? = nil,
+                bridge: Bridge? = nil,
+                alertStyle: String? = nil,
+                color: LightColor? = nil) {
         self.name = name
         self.light = light
         self.active = active

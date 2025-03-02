@@ -98,8 +98,7 @@ public class HueAPI {
     }
 
     public static func toggleActive(for reminder: ReminderItem, _ bridge: Bridge) {
-        guard let lights = reminder.light as? Set<Light> else { fatalError("Missing lights") }
-        for light in lights {
+        for light in reminder.light {
             guard let ip = bridge.address, let username = bridge.username else { fatalError("Missing ip or username") }
             guard let scheduleID = light.scheduleID else { fatalError("Missing schedule ID on Reminder") }
             guard let url = URL(string: "http://\(ip)/api/\(username)/schedules/\(scheduleID)/") else { return }
@@ -274,8 +273,7 @@ public class HueAPI {
 
     public static func deleteSchedule(on bridge: Bridge, reminder: ReminderItem) -> [URLRequest] {
         var requests = [URLRequest]()
-        guard let lights = reminder.light as? Set<Light> else { fatalError("Missing lights") }
-        for light in lights {
+        for light in reminder.light {
             guard let ip = bridge.address, let id = bridge.username else { fatalError("Missing ip or username") }
             guard let scheduleID = light.scheduleID else { continue }
             guard let url = URL(string: "http://\(ip)/api/\(id)/schedules/\(scheduleID)") else {
